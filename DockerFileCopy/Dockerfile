@@ -2,7 +2,7 @@ FROM alpine:3.19.1 AS base
 
 WORKDIR /app
 COPY ./DockerFileCopy/entrypoint.sh .
-RUN ["chmod", "+x", "./docker-entrypoint.sh"]
+RUN ["chmod", "+x", "./entrypoint.sh"]
 
 RUN mkdir -p /source
 RUN mkdir -p /destination
