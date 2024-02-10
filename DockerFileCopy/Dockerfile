@@ -1,8 +1,7 @@
 FROM alpine:3.19.1 AS base
 
 WORKDIR /app
-#COPY ./entrypoint.sh .
-COPY . .
+COPY ./DockerFileCopy/entrypoint.sh .
 RUN echo "Building for $TARGETARCH"
 
 RUN mkdir -p /source
