@@ -18,14 +18,17 @@ jobs:
     - uses: actions/checkout@v3
       with: 
         fetch-depth: 0
-
-    ### Build and publish DockerFileCopy image to dockerhub
-    - name: main action
+    ### Generate version number
+    - name: Get version
+      id: get_version
+      uses: kingtechnl/githubactions/gitversion@main
+    ### Create and publish docker image to DockerHub
+    - name: Build and publish docker image
       if: success()
-      uses: kingtechnl/githubactions/base-action@main
+      uses: kingtechnl/githubactions/publish-docker@main
       with:
-        docker_registry_username: "${{ secrets.DOCKERHUB_USERNAME }}"
-        docker_registry_password: "${{ secrets.DOCKERHUB_TOKEN }}"
+        registry_username: "${{ secrets.DOCKERHUB_USERNAME }}"
+        registry_password: "${{ secrets.DOCKERHUB_TOKEN }}"
+        image_name: "kingtech_filecopy"
+        tags: "latest"
         docker_file: "DockerFileCopy/Dockerfile"
-        docker_image_name: "kingtech_filecopy"
-        nuget_api_key: "${{ secrets.NUGETORG_TOKEN }}"
