@@ -2,7 +2,7 @@ FROM alpine:3.19.1 AS base
 
 WORKDIR /app
 COPY ./DockerFileCopy/entrypoint.sh .
-RUN echo "Building for $TARGETARCH"
+RUN ["chmod", "+x", "./docker-entrypoint.sh"]
 
 RUN mkdir -p /source
 RUN mkdir -p /destination
