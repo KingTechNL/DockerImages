@@ -1,4 +1,4 @@
-FROM nginx
+FROM nginx:1.26-alpine
 
 ARG TARGETARCH
 ARG USER_DOMAIN
