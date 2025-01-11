@@ -9,9 +9,9 @@ on:
 
 #: Jobs to execute
 jobs:
-  ## Build all projects
-  build:
-    runs-on: ubuntu-latest #self-hosted
+  ## Build DockerFileCopy image
+  build-dockerfilecopy:
+    runs-on: ubuntu-latest
 
     steps:
     ### Checkout repo
@@ -24,8 +24,6 @@ jobs:
       uses: kingtechnl/githubactions/gitversion@main
 
     ### Create and publish docker images to DockerHub
-
-    ### DockerFileCopy
     - name: Build and publish docker image
       if: success()
       uses: kingtechnl/githubactions/publish-docker@main
@@ -36,7 +34,21 @@ jobs:
         tags: "${{ steps.get_version.outputs.version }};${{ steps.get_version.outputs.branchTag }};latest"
         docker_file: "DockerFileCopy/Dockerfile"
 
-    ### SatisfactoryMapProxy
+  ## Build Satisfactory mapping image
+  build-satisfactory-map-proxy:
+    runs-on: ubuntu-latest
+
+    steps:
+    ### Checkout repo
+    - uses: actions/checkout@v3
+      with: 
+        fetch-depth: 0
+    ### Generate version number
+    - name: Get version
+      id: get_version
+      uses: kingtechnl/githubactions/gitversion@main
+
+    ### Create and publish docker images to DockerHub
     - name: Build and publish docker image
       if: success()
       uses: kingtechnl/githubactions/publish-docker@main
@@ -46,7 +58,22 @@ jobs:
         image_name: "satisfactory-map"
         tags: "${{ steps.get_version.outputs.version }};${{ steps.get_version.outputs.branchTag }};latest"
         docker_file: "SatisfactoryMap/satisfactory-map/Dockerfile"
-    ### SatisfactoryLatestSymlinker
+    
+  ## Build Satisfactory mapping image
+  build-satisfactory-save-symlink-creator:
+    runs-on: ubuntu-latest
+
+    steps:
+    ### Checkout repo
+    - uses: actions/checkout@v3
+      with: 
+        fetch-depth: 0
+    ### Generate version number
+    - name: Get version
+      id: get_version
+      uses: kingtechnl/githubactions/gitversion@main
+
+    ### Create and publish docker images to DockerHub
     - name: Build and publish docker image
       if: success()
       uses: kingtechnl/githubactions/publish-docker@main
