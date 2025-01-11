@@ -1,4 +1,6 @@
-FROM alpine:3.19.1 AS base
+FROM alpine:latest AS base
+
+ARG TARGETARCH
 
 WORKDIR /app
 COPY ./DockerFileCopy/entrypoint.sh .
@@ -15,4 +17,3 @@ RUN apk add  \
         rsync
 
 ENTRYPOINT ["./entrypoint.sh"]
-#CMD ["dotnet", "Thive.Tone.HanedaOperator.Service.dll"]
