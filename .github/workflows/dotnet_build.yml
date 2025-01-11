@@ -22,7 +22,10 @@ jobs:
     - name: Get version
       id: get_version
       uses: kingtechnl/githubactions/gitversion@main
-    ### Create and publish docker image to DockerHub
+
+    ### Create and publish docker images to DockerHub
+
+    ### DockerFileCopy
     - name: Build and publish docker image
       if: success()
       uses: kingtechnl/githubactions/publish-docker@main
@@ -32,3 +35,25 @@ jobs:
         image_name: "kingtech_filecopy"
         tags: "${{ steps.get_version.outputs.version }};${{ steps.get_version.outputs.branchTag }};latest"
         docker_file: "DockerFileCopy/Dockerfile"
+
+    ### SatisfactoryMapProxy
+    - name: Build and publish docker image
+      if: success()
+      uses: kingtechnl/githubactions/publish-docker@main
+      with:
+        registry_username: "${{ secrets.DOCKERHUB_USERNAME }}"
+        registry_password: "${{ secrets.DOCKERHUB_TOKEN }}"
+        image_name: "satisfactory-map"
+        tags: "${{ steps.get_version.outputs.version }};${{ steps.get_version.outputs.branchTag }};latest"
+        docker_file: "SatisfactoryMap/satisfactory-map/Dockerfile"
+    ### SatisfactoryLatestSymlinker
+    - name: Build and publish docker image
+      if: success()
+      uses: kingtechnl/githubactions/publish-docker@main
+      with:
+        registry_username: "${{ secrets.DOCKERHUB_USERNAME }}"
+        registry_password: "${{ secrets.DOCKERHUB_TOKEN }}"
+        image_name: "satisfactory-latest"
+        tags: "${{ steps.get_version.outputs.version }};${{ steps.get_version.outputs.branchTag }};latest"
+        docker_file: "SatisfactoryMap/satisfactory-latest/Dockerfile"
+    
