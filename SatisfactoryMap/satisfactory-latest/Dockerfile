@@ -3,8 +3,8 @@ FROM ubuntu:24.04
 ARG TARGETARCH
 
 # Copy scripts to docker image
-COPY SatisfactoryMap/satisfactory-map/cronjobs /etc/cron.d/cronjobs
-COPY SatisfactoryMap/satisfactory-map/update-save.sh /update-save.sh
+COPY SatisfactoryMap/satisfactory-latest/cronjobs /etc/cron.d/cronjobs
+COPY SatisfactoryMap/satisfactory-latest/update-save.sh /update-save.sh
 RUN chmod +x /update-save.sh
 
 # Install cron
