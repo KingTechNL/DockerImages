@@ -1,5 +1,7 @@
 FROM ubuntu:24.04
 
+ARG TARGETARCH
+
 RUN apt-get update && apt-get -y install cron
 
 # Copy hello-cron file to the cron.d directory
