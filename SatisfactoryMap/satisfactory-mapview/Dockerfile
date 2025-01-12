@@ -9,15 +9,15 @@ ENV DOMAIN_NAME=$DOMAIN_NAME
 ENV SCHEME=$SCHEME
 
 # Copy NGinx config file.
-COPY SatisfactoryMap/satisfactory-map/nginx.conf /nginx.conf.tmpl
+COPY SatisfactoryMap/satisfactory-mapview/nginx.conf /nginx.conf.tmpl
 
 # Copy scripts for cron-job
-COPY SatisfactoryMap/satisfactory-latest/cronjobs /etc/cron.d/cronjobs
-COPY SatisfactoryMap/satisfactory-latest/update-save.sh /update-save.sh
+COPY SatisfactoryMap/satisfactory-mapview/cronjobs /etc/cron.d/cronjobs
+COPY SatisfactoryMap/satisfactory-mapview/update-save.sh /update-save.sh
 RUN chmod +x /update-save.sh
 
 # Copy entrypoint and give it permission to run.
-COPY SatisfactoryMap/satisfactory-map/entrypoint.sh .
+COPY SatisfactoryMap/satisfactory-mapview/entrypoint.sh .
 RUN chmod +x entrypoint.sh
 RUN dos2unix entrypoint.sh
 
