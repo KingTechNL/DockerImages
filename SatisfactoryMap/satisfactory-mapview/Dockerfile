@@ -1,6 +1,6 @@
 #FROM nginx:1.26-alpine
 FROM nginx
-RUN apk --no-cache add curl bash
+#RUN apk --no-cache add curl bash
 
 # Gather environment variables.
 ARG TARGETARCH
@@ -23,7 +23,7 @@ RUN chmod +x entrypoint.sh
 RUN dos2unix entrypoint.sh
 
 # Setup cron job.
-RUN apk --no-cache add apk-cron
+#RUN apk --no-cache add apk-cron
 RUN chmod 0644 /etc/cron.d/cronjobs
 RUN crontab /etc/cron.d/cronjobs
 RUN touch /var/log/cron.log
