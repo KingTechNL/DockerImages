@@ -7,4 +7,5 @@ echo "Starting cron..."
 cron -f
 
 echo "Starting nginx..."
+nginx-debug '-g' 'daemon off;'
 /docker-entrypoint.sh "$@"

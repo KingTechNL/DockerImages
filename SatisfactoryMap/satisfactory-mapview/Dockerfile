@@ -29,7 +29,5 @@ RUN touch /var/log/cron.log
 
 
 # Start cron using entrypoint script
-ENTRYPOINT [ "./entrypoint.sh" ]
-
-# start nginx
-CMD ["nginx-debug" '-g' 'daemon off;']
+#ENTRYPOINT [ "./entrypoint.sh" ]
+CMD [ "/entrypoint.sh" ]
