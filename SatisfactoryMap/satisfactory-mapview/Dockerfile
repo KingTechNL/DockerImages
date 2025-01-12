@@ -1,4 +1,5 @@
-FROM nginx:1.26-alpine
+#FROM nginx:1.26-alpine
+FROM nginx
 RUN apk --no-cache add curl bash
 
 # Gather environment variables.
