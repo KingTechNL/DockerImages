@@ -1,11 +1,12 @@
 FROM nginx:1.26-alpine
+RUN apk --no-cache add curl bash
 
 # Gather environment variables.
 ARG TARGETARCH
 ARG DOMAIN_NAME
 ARG SCHEME=https
-ENV DOMAIN_NAME $DOMAIN_NAME
-ENV SCHEME $SCHEME
+ENV DOMAIN_NAME=$DOMAIN_NAME
+ENV SCHEME=$SCHEME
 
 # Copy NGinx config file.
 COPY SatisfactoryMap/satisfactory-map/nginx.conf /nginx.conf.tmpl
