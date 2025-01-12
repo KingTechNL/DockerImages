@@ -26,5 +26,8 @@ RUN chmod 0644 /etc/cron.d/cronjobs
 RUN crontab /etc/cron.d/cronjobs
 RUN touch /var/log/cron.log
 
-# Start container using entrypoint script
+# start crond with log level 8 in foreground, output to stderr
+CMD ["cron", "-f"]
+
+# Start nginx using entrypoint script
 ENTRYPOINT [ "./entrypoint.sh" ]
