@@ -1,9 +1,10 @@
 #!/bin/sh
 
-echo "Creating nginx config for: ${SCHEME}://${DOMAIN_NAME}"
-envsubst '$DOMAIN_NAME,$SCHEME' < /nginx.conf.tmpl > /etc/nginx/nginx.conf
+echo "Creating nginx config for: ${SCHEME}://${USER_DOMAIN}"
+envsubst '$USER_DOMAIN,$SCHEME' < /nginx.conf.tmpl > /etc/nginx/nginx.conf
 
-echo "Starting NGinx server..."
-nginx-debug '-g' 'daemon off;'
+echo "Starting cron..."
+cron -f
 
-echo "Container started!"
+echo "Starting nginx..."
+/docker-entrypoint.sh "$@"

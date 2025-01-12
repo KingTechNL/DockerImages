@@ -3,9 +3,9 @@ RUN apk --no-cache add curl bash
 
 # Gather environment variables.
 ARG TARGETARCH
-ARG DOMAIN_NAME
+ARG USER_DOMAIN
 ARG SCHEME=https
-ENV DOMAIN_NAME=$DOMAIN_NAME
+ENV USER_DOMAIN=$USER_DOMAIN
 ENV SCHEME=$SCHEME
 
 # Copy NGinx config file.
@@ -22,12 +22,14 @@ RUN chmod +x entrypoint.sh
 RUN dos2unix entrypoint.sh
 
 # Setup cron job.
+RUN apk --no-cache add cron
 RUN chmod 0644 /etc/cron.d/cronjobs
 RUN crontab /etc/cron.d/cronjobs
 RUN touch /var/log/cron.log
 
-# start crond with log level 8 in foreground, output to stderr
-CMD ["cron", "-f"]
 
-# Start nginx using entrypoint script
+# Start cron using entrypoint script
 ENTRYPOINT [ "./entrypoint.sh" ]
+
+# start nginx
+CMD ["nginx-debug" '-g' 'daemon off;']
