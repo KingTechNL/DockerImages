@@ -60,7 +60,7 @@ RUN chmod +x /update-save.sh
 # Copy entrypoint and give it permission to run.
 COPY SatisfactoryMap/satisfactory-mapview/entrypoint.sh .
 RUN chmod +x entrypoint.sh
-RUN dos2unix entrypoint.sh
+#RUN dos2unix entrypoint.sh
 
 # Setup cron job.
 #RUN apk --no-cache add apk-cron
