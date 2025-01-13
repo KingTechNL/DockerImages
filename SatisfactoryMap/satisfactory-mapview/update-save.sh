@@ -1,5 +1,5 @@
 #!/bin/bash
-latest_file=$(ls -t /saves | grep -v '${SAVE_NAME}' | head -n 1)
+latest_file=$(ls -t /saves | grep -v 'latest.sav' | head -n 1)
 
 current_datetime=$(date +"[%Y-%m-%d %H:%M:%S]")
 
