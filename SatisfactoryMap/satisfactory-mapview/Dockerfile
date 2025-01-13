@@ -55,7 +55,6 @@ COPY SatisfactoryMap/satisfactory-mapview/nginx.conf /nginx.conf.tmpl
 # Copy scripts for cron-job
 COPY SatisfactoryMap/satisfactory-mapview/cronjobs /etc/cron.d/cronjobs
 COPY SatisfactoryMap/satisfactory-mapview/update-save.sh /update-save.sh.tmpl
-RUN chmod +x /update-save.sh
 
 # Copy entrypoint and give it permission to run.
 COPY SatisfactoryMap/satisfactory-mapview/entrypoint.sh .
